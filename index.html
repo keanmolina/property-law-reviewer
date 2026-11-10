@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Law Portfolio Module</title>
+    <!-- Elegant Professional Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0f1115; /* Deep, professional charcoal */
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        /* Top Brand Header */
+        .portfolio-header {
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: #d4af37; /* Sophisticated Gold */
+            letter-spacing: 1px;
+        }
+
+        .brand-subtitle {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #64748b;
+        }
+
+        /* Main Content Wrapper */
+        .app-container {
+            width: 100%;
+            max-width: 900px;
+            background: #181b21;
+            border: 1px solid #272c36;
+            border-radius: 8px;
+            padding: 60px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            display: none; /* Hidden until start */
+            position: relative;
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 17, 21, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #181b21;
+            padding: 50px;
+            border-radius: 8px;
+            max-width: 550px;
+            border: 1px solid #272c36;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            animation: fadeIn 0.5s ease;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #f8fafc;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            color: #94a3b8;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        /* Professional Buttons */
+        .btn {
+            background: transparent;
+            color: #d4af37;
+            border: 1px solid #d4af37;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn:hover {
+            background: #d4af37;
+            color: #0f1115;
+        }
+
+        /* Quiz Layout */
+        .progress-indicator {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .article-title {
+            font-size: 28px;
+            color: #d4af37;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #272c36;
+            padding-bottom: 20px;
+        }
+
+        .scenario-box {
+            font-size: 16px;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            padding-left: 20px;
+            border-left: 3px solid #334155;
+        }
+
+        .question-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: #f8fafc;
+            margin-bottom: 25px;
+        }
+
+        .content-section {
+            display: none;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px dashed #272c36;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .section-label {
+            font-size: 12px;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .answer-text, .whys-text {
+            font-size: 15px;
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        .action-row {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Elegant Pagination HUD */
+        .pagination-nav {
+            position: fixed;
+            bottom: 40px;
+            display: none;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .page-dot {
+            width: 35px;
+            height: 4px;
+            background: #272c36;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-dot:hover {
+            background: #475569;
+        }
+
+        .page-dot.active {
+            background: #d4af37;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Professional Branding Header -->
+    <div class="portfolio-header">
+        <div class="brand-name">Marriane Annelice</div>
+        <div class="brand-subtitle">Pre-Law Interactive Study Module</div>
+    </div>
+
+    <!-- Start Modal -->
+    <div id="startModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Hey love ❤️</h2>
+            <p>I know you've been so stressed out lately, but I want you to know how proud I am of you. Take a deep breath, and remember that all your hard work is building your brilliant future.</p>
+            <p>You've completely got this!</p>
+            <button class="btn" onclick="startApp()">Commence Session</button>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div id="appContainer" class="app-container">
+        
+        <span class="progress-indicator" id="progressIndicator">Case 1 of 10</span>
+        <h2 id="articleTitle" class="article-title">Article Title</h2>
+        
+        <div class="section-label">The Facts</div>
+        <div id="scenarioBox" class="scenario-box">Scenario goes here...</div>
+        
+        <div class="section-label">The Issue</div>
+        <div id="questionText" class="question-text">Question goes here?</div>
+        
+        <div class="action-row">
+            <button id="showAnswerBtn" class="btn" onclick="showAnswer()">View Ruling</button>
+        </div>
+
+        <div id="answerSection" class="content-section">
+            <span class="section-label">Held</span>
+            <div class="answer-text" id="answerText"></div>
+            
+            <div class="action-row">
+                <button id="showWhysBtn" class="btn" onclick="showWhys()">View Legal Basis</button>
+            </div>
+        </div>
+
+        <div id="whysSection" class="content-section">
+            <span class="section-label">Ratio Decidendi (The Why)</span>
+            <div class="whys-text" id="whysText"></div>
+            
+            <div class="action-row">
+                <button id="nextBtn" class="btn" onclick="nextQuestion()">Next Case ⟶</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination HUD -->
+    <div id="hudNav" class="pagination-nav">
+        <!-- Lines injected by JS -->
+    </div>
+
+    <!-- End Modal -->
+    <div id="endModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2>Session Complete</h2>
+            <p>See? I told you that you got this. Every single case you read and every scenario you break down brings you one step closer to that Attorney title.</p>
+            <p>Please rest your eyes now and take a well-deserved break. I love you so much, and I'm wildly proud of you! 🥰</p>
+            <button class="btn" onclick="location.reload()">Restart Module</button>
+        </div>
+    </div>
+
+    <script>
+        // Cleaned array - no regex needed!
+        const questions = [
+            {
+                article: "Art. 428 (Rights of an Owner)",
+                scenario: "An owner returns to their provincial land and finds a family illegally occupying it. The owner wants to file an action in court to kick them out, but it has only been 6 months since the intruders entered.",
+                question: "Which specific court remedy should the owner use?",
+                answer: "The owner should file an Accion Interdictal.",
+                whys: "Under Art. 428, an owner has three specific court remedies to kick out unlawful possessors. Because it has been less than one year since the intrusion, the proper remedy is an accion interdictal (summary ejectment)."
+            },
+            {
+                article: "Art. 430 & 431 (Fencing & Limitations)",
+                scenario: "A landowner builds a massive concrete wall strictly around their property lines. However, the new wall completely blocks a pre-existing legal road right-of-way that a landlocked neighbor uses to reach the highway.",
+                question: "Does the landowner have the right to build this specific wall?",
+                answer: "No, they cannot block the right-of-way.",
+                whys: "Under Art. 430, every landowner has the legal right to build fences or walls around their boundaries. However, the specific limitation is that you cannot use your fence to block a pre-existing legal easement, such as an established right-of-way for a landlocked neighbor."
+            },
+            {
+                article: "Art. 435 & 436 (Eminent Domain vs. Police Power)",
+                scenario: "A local government tears down a burning, unstable concrete wall on a private residential lot to prevent a fire from spreading to the rest of the town. The homeowner demands just compensation based on fair market value.",
+                question: "Is the homeowner entitled to just compensation?",
+                answer: "No, the homeowner gets zero compensation.",
+                whys: "Under Art. 436, this is a Police Power abatement, where government authorities tear down private property to protect public health and safety and eliminate a hazard. Because it was destroyed to eliminate a hazard, the owner gets zero compensation, unlike Eminent Domain (Art. 435), which requires just compensation for public use taking."
+            },
+            {
+                article: "Art. 438 (Hidden Treasure)",
+                scenario: "A hired contractor is digging a basement for a new house. While digging, he accidentally strikes a buried, ancient chest filled with untraceable gold coins. He was not trespassing.",
+                question: "Who owns the gold coins?",
+                answer: "The treasure is split 50/50 between the landowner and the contractor.",
+                whys: "Under Art. 438, hidden treasure belongs to the landowner, but if an outsider discovers it by chance and was not trespassing, the law awards exactly 50% to the finder and 50% to the landowner."
+            },
+            {
+                article: "Art. 443 (Expenses of Production)",
+                scenario: "An intruder knowingly takes over an empty farm in bad faith, buys seeds, and cultivates a full harvest of sugarcane. The true landowner evicts the intruder and takes possession of the harvested crops.",
+                question: "Does the true landowner have to pay the intruder for the seeds and cultivation costs?",
+                answer: "Yes, the owner must reimburse the actual expenses of production.",
+                whys: "Under Art. 443, when a landowner takes crops planted by someone else, they must reimburse the actual expenses in planting, cultivating, and gathering. The owner must pay even if the cultivator acted in bad faith, because the law forbids getting free crops on another person's bill."
+            },
+            {
+                article: "Art. 448 (Builder in Good Faith)",
+                scenario: "Due to an incorrect surveyor marker, a family honestly believes they own a vacant lot and spends ₱2 Million building a beautiful home on it. The true landowner later discovers this. The lot is worth ₱500,000.",
+                question: "What are the true landowner's specific options?",
+                answer: "The landowner must either keep the building (and pay for expenses) OR force the family to buy the land.",
+                whys: "Under Art. 448, when someone builds in good faith (honest belief of right), the landowner has an exclusive choice: either keep the building by paying the builder for necessary and useful expenses, OR force the builder to buy the land at fair market value."
+            },
+            {
+                article: "Art. 450 (Builder in Bad Faith)",
+                scenario: "An intruder knows perfectly well he has no title, but builds a house on a lot anyway. The landowner discovers it and wants the intruder gone.",
+                question: "Can the landowner demand the immediate demolition of the house?",
+                answer: "Yes, demolition is one of the landowner's three choices.",
+                whys: "Under Art. 450, a landowner facing a bad-faith builder has three options: keep the building for free, order the builder to demolish the structure at their own expense, or compel the builder to buy the land regardless of its market price, plus collect damages under all three choices."
+            },
+            {
+                article: "Art. 453 (Both Parties in Bad Faith)",
+                scenario: "An intruder starts building a house on a lot knowing he doesn't own it. The true landowner lives next door, watches the entire construction over three months, and intentionally stays silent.",
+                question: "How does the court treat this situation?",
+                answer: "The court treats both parties as if they acted in complete good faith.",
+                whys: "Under Art. 453, if both the landowner and the builder acted in bad faith (builder knew he had no title, landowner watched without saying a word), their mutual bad faith cancels out. The standard good faith options under Article 448 then apply."
+            },
+            {
+                article: "Art. 457 (Alluvion / Accretion)",
+                scenario: "Over the span of ten years, the natural flow of a river gradually and imperceptibly deposits soil along a farmer's riverbank, expanding his land.",
+                question: "Who owns the newly accumulated land, and what must they do?",
+                answer: "The farmer automatically owns it, but must formally register it.",
+                whys: "Under Art. 457, a riparian landowner automatically owns the gradual, imperceptible soil deposits accumulated by natural water currents. However, they must formally apply to place it under their Torrens Title, or a squatter could take it by prescription after 30 years."
+            },
+            {
+                article: "Art. 459 (Avulsion)",
+                scenario: "During a violent typhoon, a massive, identifiable chunk of land is torn away from Farm A and slammed downstream onto Farm B.",
+                question: "Does the owner of Farm B instantly own that chunk of land?",
+                answer: "No. The owner of Farm A retains ownership, subject to a deadline.",
+                whys: "Under Art. 459, when a violent flood tears off an identifiable chunk of land, the original owner keeps ownership. However, they must physically claim or remove that land within two years; otherwise, the downstream landowner acquires it by prescription."
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function startApp() {
+            document.getElementById('startModal').style.display = 'none';
+            document.getElementById('appContainer').style.display = 'block';
+            document.getElementById('hudNav').style.display = 'flex';
+            buildHUD();
+            loadQuestion();
+        }
+
+        function buildHUD() {
+            const nav = document.getElementById('hudNav');
+            nav.innerHTML = ''; 
+            questions.forEach((q, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'page-dot';
+                btn.onclick = () => jumpToQuestion(index);
+                nav.appendChild(btn);
+            });
+        }
+
+        function updateHUD() {
+            const buttons = document.querySelectorAll('.page-dot');
+            buttons.forEach((btn, index) => {
+                if (index === currentIndex) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            document.getElementById('progressIndicator').innerText = `Case ${currentIndex + 1} of ${questions.length}`;
+        }
+
+        function jumpToQuestion(index) {
+            currentIndex = index;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const currentQ = questions[currentIndex];
+            
+            document.getElementById('articleTitle').innerText = currentQ.article;
+            document.getElementById('scenarioBox').innerText = currentQ.scenario;
+            document.getElementById('questionText').innerText = currentQ.question;
+            document.getElementById('answerText').innerText = currentQ.answer;
+            document.getElementById('whysText').innerText = currentQ.whys; 
+
+            // Reset visibility
+            document.getElementById('answerSection').style.display = 'none';
+            document.getElementById('whysSection').style.display = 'none';
+            document.getElementById('showAnswerBtn').style.display = 'inline-block';
+            document.getElementById('showWhysBtn').style.display = 'inline-block';
+
+            updateHUD();
+        }
+
+        function showAnswer() {
+            document.getElementById('showAnswerBtn').style.display = 'none';
+            document.getElementById('answerSection').style.display = 'block';
+        }
+
+        function showWhys() {
+            document.getElementById('showWhysBtn').style.display = 'none';
+            document.getElementById('whysSection').style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentIndex++;
+            if (currentIndex < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById('appContainer').style.display = 'none';
+                document.getElementById('hudNav').style.display = 'none';
+                document.getElementById('endModal').style.display = 'flex';
+            }
+        }
+    </script>
+</body>
+</html>
