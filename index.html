@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Law Portfolio Module</title>
-    <!-- Elegant Professional Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,7 +13,7 @@
         }
 
         body {
-            background-color: #0f1115; /* Deep, professional charcoal */
+            background-color: #0f1115;
             color: #e2e8f0;
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
@@ -23,27 +22,28 @@
             align-items: center;
             justify-content: center;
             line-height: 1.6;
+            padding: 100px 20px;
         }
 
         /* Top Brand Header */
         .portfolio-header {
             position: absolute;
-            top: 40px;
-            left: 50px;
+            top: 30px;
+            left: 40px;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
         }
 
         .brand-name {
             font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            color: #d4af37; /* Sophisticated Gold */
+            font-size: 22px;
+            color: #d4af37;
             letter-spacing: 1px;
         }
 
         .brand-subtitle {
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #64748b;
@@ -56,9 +56,9 @@
             background: #181b21;
             border: 1px solid #272c36;
             border-radius: 8px;
-            padding: 60px;
+            padding: 45px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            display: none; /* Hidden until start */
+            display: none;
             position: relative;
         }
 
@@ -66,17 +66,18 @@
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(15, 17, 21, 0.85);
+            background: rgba(15, 17, 21, 0.88);
             backdrop-filter: blur(8px);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            padding: 20px;
         }
 
         .modal-content {
             background: #181b21;
-            padding: 50px;
+            padding: 45px;
             border-radius: 8px;
             max-width: 550px;
             border: 1px solid #272c36;
@@ -93,7 +94,7 @@
 
         .modal-content p {
             color: #94a3b8;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-size: 15px;
         }
 
@@ -102,9 +103,9 @@
             background: transparent;
             color: #d4af37;
             border: 1px solid #d4af37;
-            padding: 12px 30px;
+            padding: 12px 28px;
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -124,48 +125,48 @@
             color: #64748b;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: block;
         }
 
         .article-title {
-            font-size: 28px;
+            font-size: 26px;
             color: #d4af37;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border-bottom: 1px solid #272c36;
-            padding-bottom: 20px;
+            padding-bottom: 18px;
         }
 
         .scenario-box {
             font-size: 16px;
             color: #cbd5e1;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             line-height: 1.8;
-            padding-left: 20px;
+            padding-left: 18px;
             border-left: 3px solid #334155;
         }
 
         .question-text {
             font-family: 'Playfair Display', serif;
-            font-size: 22px;
+            font-size: 21px;
             color: #f8fafc;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .content-section {
             display: none;
-            margin-top: 30px;
-            padding-top: 30px;
+            margin-top: 25px;
+            padding-top: 25px;
             border-top: 1px dashed #272c36;
             animation: fadeIn 0.4s ease forwards;
         }
 
         .section-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #d4af37;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: block;
         }
 
@@ -176,9 +177,10 @@
         }
 
         .action-row {
-            margin-top: 30px;
+            margin-top: 25px;
             display: flex;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         @keyframes fadeIn {
@@ -186,17 +188,24 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Elegant Pagination HUD */
+        /* Responsive Pagination HUD */
         .pagination-nav {
             position: fixed;
-            bottom: 40px;
+            bottom: 25px;
             display: none;
-            gap: 8px;
+            gap: 6px;
             align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 90%;
+            background: rgba(15, 17, 21, 0.9);
+            padding: 10px 16px;
+            border-radius: 6px;
+            border: 1px solid #272c36;
         }
 
         .page-dot {
-            width: 35px;
+            width: 24px;
             height: 4px;
             background: #272c36;
             border: none;
@@ -212,13 +221,27 @@
             background: #d4af37;
         }
 
+        @media (max-width: 600px) {
+            .portfolio-header {
+                top: 20px;
+                left: 20px;
+            }
+            .app-container, .modal-content {
+                padding: 28px 22px;
+            }
+            .article-title {
+                font-size: 22px;
+            }
+            .question-text {
+                font-size: 19px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Professional Branding Header -->
     <div class="portfolio-header">
-        <div class="brand-name">Marriane Annelice</div>
+        <div class="brand-name">Kean Andrei</div>
         <div class="brand-subtitle">Pre-Law Interactive Study Module</div>
     </div>
 
@@ -226,16 +249,15 @@
     <div id="startModal" class="modal-overlay">
         <div class="modal-content">
             <h2>Hey love ❤️</h2>
-            <p>I know you've been so stressed out lately, but I want you to know how proud I am of you. Take a deep breath, and remember that all your hard work is building your brilliant future.</p>
-            <p>You've completely got this!</p>
-            <button class="btn" onclick="startApp()">Commence Session</button>
+            <p>Take a deep breath, adjust your glasses, and remember how hard you've worked for this 3:00 PM exam. Every single late night and reading session is building your future.</p>
+            <p>I put together this final batch covering Accession and Builders/Planters/Sowers so you can sharpen up right before you go in. I love you so much, and I'm wildly proud of you. You've got this!</p>
+            <button class="btn" onclick="startApp()">Commence Final Review</button>
         </div>
     </div>
 
     <!-- Main Content Container -->
     <div id="appContainer" class="app-container">
-        
-        <span class="progress-indicator" id="progressIndicator">Case 1 of 10</span>
+        <span class="progress-indicator" id="progressIndicator">Case 1 of 16</span>
         <h2 id="articleTitle" class="article-title">Article Title</h2>
         
         <div class="section-label">The Facts</div>
@@ -268,92 +290,131 @@
     </div>
 
     <!-- Pagination HUD -->
-    <div id="hudNav" class="pagination-nav">
-        <!-- Lines injected by JS -->
-    </div>
+    <div id="hudNav" class="pagination-nav"></div>
 
     <!-- End Modal -->
     <div id="endModal" class="modal-overlay" style="display: none;">
         <div class="modal-content">
-            <h2>Session Complete</h2>
-            <p>See? I told you that you got this. Every single case you read and every scenario you break down brings you one step closer to that Attorney title.</p>
-            <p>Please rest your eyes now and take a well-deserved break. I love you so much, and I'm wildly proud of you! 🥰</p>
-            <button class="btn" onclick="location.reload()">Restart Module</button>
+            <h2>You're Ready! 🎉</h2>
+            <p>You just cleared the entire module. Trust your preparation, stay calm, and read every question carefully—you know this material inside and out.</p>
+            <p>Go crush your 3:00 PM exam, Atty.! I love you so much and I'll be cheering for you the whole time. 🥰</p>
+            <button class="btn" onclick="location.reload()">Review Again</button>
         </div>
     </div>
 
     <script>
-        // Cleaned array - no regex needed!
         const questions = [
             {
-                article: "Art. 428 (Rights of an Owner)",
-                scenario: "An owner returns to their provincial land and finds a family illegally occupying it. The owner wants to file an action in court to kick them out, but it has only been 6 months since the intruders entered.",
-                question: "Which specific court remedy should the owner use?",
-                answer: "The owner should file an Accion Interdictal.",
-                whys: "Under Art. 428, an owner has three specific court remedies to kick out unlawful possessors. Because it has been less than one year since the intrusion, the proper remedy is an accion interdictal (summary ejectment)."
+                article: "Art. 445 (Accession Continua)",
+                scenario: "A registered landowner discovers an unauthorized concrete warehouse built on his vacant parcel. The builder argues that because the warehouse materials cost more than the raw land, he should be recognized as the primary owner of the entire estate.",
+                question: "Who is legally treated as the primary owner of the land and structure?",
+                answer: "The landowner is the primary owner.",
+                whys: "Under Art. 445, everything built, planted, or sown on a piece of land belongs to the landowner under the principle that the accessory follows the principal. The soil is always treated as the primary asset, subject to indemnity rules."
             },
             {
-                article: "Art. 430 & 431 (Fencing & Limitations)",
-                scenario: "A landowner builds a massive concrete wall strictly around their property lines. However, the new wall completely blocks a pre-existing legal road right-of-way that a landlocked neighbor uses to reach the highway.",
-                question: "Does the landowner have the right to build this specific wall?",
-                answer: "No, they cannot block the right-of-way.",
-                whys: "Under Art. 430, every landowner has the legal right to build fences or walls around their boundaries. However, the specific limitation is that you cannot use your fence to block a pre-existing legal easement, such as an established right-of-way for a landlocked neighbor."
+                article: "Art. 446 (Presumption of Works by Owner)",
+                scenario: "A dispute arises over a newly constructed barn on a titled farm. A third party claims he spent his own personal funds to construct the barn, though he has no receipts or written agreements to show the court.",
+                question: "Who carries the legal burden of proving who paid for the construction?",
+                answer: "The third party claiming he built it carries the burden of proof.",
+                whys: "Under Art. 446, the law automatically presumes that all buildings, crops, and improvements on a lot were constructed by the registered landowner at their own expense until proven otherwise."
             },
             {
-                article: "Art. 435 & 436 (Eminent Domain vs. Police Power)",
-                scenario: "A local government tears down a burning, unstable concrete wall on a private residential lot to prevent a fire from spreading to the rest of the town. The homeowner demands just compensation based on fair market value.",
-                question: "Is the homeowner entitled to just compensation?",
-                answer: "No, the homeowner gets zero compensation.",
-                whys: "Under Art. 436, this is a Police Power abatement, where government authorities tear down private property to protect public health and safety and eliminate a hazard. Because it was destroyed to eliminate a hazard, the owner gets zero compensation, unlike Eminent Domain (Art. 435), which requires just compensation for public use taking."
+                article: "Art. 447 (Owner Using Another's Materials)",
+                scenario: "A landowner builds a house on his own lot using high-grade hardwood timber stored nearby, honestly believing the timber was part of his own lumber delivery. The true owner of the timber demands that the house be torn down to return his wood.",
+                question: "Can the timber owner force the demolition of the house to retrieve his materials?",
+                answer: "No, the landowner keeps the structure and must pay the timber's full value.",
+                whys: "Under Art. 447, a landowner who builds in good faith using another's materials keeps the structure and simply pays the material owner their full value. Even if the landowner acted in bad faith, materials can only be removed if doing so causes zero damage to the building."
             },
             {
-                article: "Art. 438 (Hidden Treasure)",
-                scenario: "A hired contractor is digging a basement for a new house. While digging, he accidentally strikes a buried, ancient chest filled with untraceable gold coins. He was not trespassing.",
-                question: "Who owns the gold coins?",
-                answer: "The treasure is split 50/50 between the landowner and the contractor.",
-                whys: "Under Art. 438, hidden treasure belongs to the landowner, but if an outsider discovers it by chance and was not trespassing, the law awards exactly 50% to the finder and 50% to the landowner."
+                article: "Art. 448 (Builder in Good Faith - Forced Lease Exception)",
+                scenario: "Relying on a flawed boundary survey, a person builds a small ₱300,000 rest house in good faith on a prime commercial lot worth ₱15,000,000. The landowner refuses to pay for the rest house and demands that the builder buy the ₱15M lot instead.",
+                question: "Can the landowner force the good-faith builder to buy the ₱15M lot?",
+                answer: "No, the parties must enter into a forced lease instead.",
+                whys: "Under Art. 448, while a landowner normally chooses between paying for the building or forcing the builder to buy the land, the builder cannot be forced to buy the lot if the land's value is considerably more than the building's. In that case, they enter into a forced commercial lease."
             },
             {
-                article: "Art. 443 (Expenses of Production)",
-                scenario: "An intruder knowingly takes over an empty farm in bad faith, buys seeds, and cultivates a full harvest of sugarcane. The true landowner evicts the intruder and takes possession of the harvested crops.",
-                question: "Does the true landowner have to pay the intruder for the seeds and cultivation costs?",
-                answer: "Yes, the owner must reimburse the actual expenses of production.",
-                whys: "Under Art. 443, when a landowner takes crops planted by someone else, they must reimburse the actual expenses in planting, cultivating, and gathering. The owner must pay even if the cultivator acted in bad faith, because the law forbids getting free crops on another person's bill."
+                article: "Arts. 449 & 450 (Builder in Bad Faith)",
+                scenario: "An intruder knowingly squats on a private lot and builds a concrete garage without permission. The landowner wants the garage removed at the intruder's expense AND wants monetary damages for the unauthorized occupation.",
+                question: "Can the landowner demand both demolition at the builder's expense and damages?",
+                answer: "Yes, the landowner can demand demolition plus damages.",
+                whys: "Under Arts. 449–450, a bad-faith builder loses everything without indemnity. The landowner can choose to: (1) keep the building for free, (2) demand demolition at the builder's expense, or (3) compel the builder to buy the land regardless of market price—plus collect damages under all three options."
             },
             {
-                article: "Art. 448 (Builder in Good Faith)",
-                scenario: "Due to an incorrect surveyor marker, a family honestly believes they own a vacant lot and spends ₱2 Million building a beautiful home on it. The true landowner later discovers this. The lot is worth ₱500,000.",
-                question: "What are the true landowner's specific options?",
-                answer: "The landowner must either keep the building (and pay for expenses) OR force the family to buy the land.",
-                whys: "Under Art. 448, when someone builds in good faith (honest belief of right), the landowner has an exclusive choice: either keep the building by paying the builder for necessary and useful expenses, OR force the builder to buy the land at fair market value."
-            },
-            {
-                article: "Art. 450 (Builder in Bad Faith)",
-                scenario: "An intruder knows perfectly well he has no title, but builds a house on a lot anyway. The landowner discovers it and wants the intruder gone.",
-                question: "Can the landowner demand the immediate demolition of the house?",
-                answer: "Yes, demolition is one of the landowner's three choices.",
-                whys: "Under Art. 450, a landowner facing a bad-faith builder has three options: keep the building for free, order the builder to demolish the structure at their own expense, or compel the builder to buy the land regardless of its market price, plus collect damages under all three choices."
+                article: "Art. 452 (Reimbursement for Necessary Expenses)",
+                scenario: "A bad-faith squatter builds an illegal cabin on a riverside lot, and also constructs a concrete retaining wall that stops the river from eroding and washing away the landowner's soil. The landowner evicts the squatter.",
+                question: "Is the bad-faith squatter entitled to any reimbursement at all?",
+                answer: "Yes, he must be reimbursed for the concrete retaining wall.",
+                whys: "Under Art. 452, even a bad-faith builder is entitled to reimbursement for necessary preservation expenses made on the land, because improvements like dikes or retaining walls permanently preserve the owner's property from destruction."
             },
             {
                 article: "Art. 453 (Both Parties in Bad Faith)",
-                scenario: "An intruder starts building a house on a lot knowing he doesn't own it. The true landowner lives next door, watches the entire construction over three months, and intentionally stays silent.",
-                question: "How does the court treat this situation?",
-                answer: "The court treats both parties as if they acted in complete good faith.",
-                whys: "Under Art. 453, if both the landowner and the builder acted in bad faith (builder knew he had no title, landowner watched without saying a word), their mutual bad faith cancels out. The standard good faith options under Article 448 then apply."
+                scenario: "A builder starts erecting a store on a lot knowing he does not own it. The registered landowner sees the construction happening every single day from across the street, knows his rights are being violated, yet intentionally stays silent until it is finished.",
+                question: "What legal rule governs the rights of the landowner and the builder?",
+                answer: "Their mutual bad faith cancels out, and Art. 448 (Good Faith rules) applies.",
+                whys: "Under Art. 453, when both the builder and the landowner act in bad faith, the court treats both parties as if they acted in complete good faith, applying the landowner's standard election under Article 448."
+            },
+            {
+                article: "Art. 454 (Landowner in Bad Faith, Builder in Good Faith)",
+                scenario: "An innocent buyer builds a house on a lot honestly believing it is his. The true landowner knows the builder is making an honest mistake, but intentionally keeps quiet so he can later claim the finished house.",
+                question: "What is the landowner legally required to do?",
+                answer: "The landowner must pay for the entire building plus substantial damages.",
+                whys: "Under Art. 454, when the builder is in good faith but the landowner acts in bad faith by staying silent to trap the builder, the rules of Art. 447 apply: the landowner must pay the full value of the building and is liable for legal damages."
+            },
+            {
+                article: "Art. 455 (Three Parties Involved)",
+                scenario: "A builder constructs a house on a landowner's lot using cement owned by an innocent hardware supplier. Both the builder and landowner acted in good faith, and the landowner chooses to appropriate and keep the house.",
+                question: "Who is directly liable to pay the hardware supplier for the cement?",
+                answer: "The landowner becomes directly responsible for paying the supplier.",
+                whys: "Under Art. 455, the builder is primarily liable for third-party materials and the landowner is only subsidiarily liable if the builder is insolvent—EXCEPT when the landowner chooses to appropriate and keep the building under Art. 448, making the landowner directly liable."
             },
             {
                 article: "Art. 457 (Alluvion / Accretion)",
-                scenario: "Over the span of ten years, the natural flow of a river gradually and imperceptibly deposits soil along a farmer's riverbank, expanding his land.",
-                question: "Who owns the newly accumulated land, and what must they do?",
-                answer: "The farmer automatically owns it, but must formally register it.",
-                whys: "Under Art. 457, a riparian landowner automatically owns the gradual, imperceptible soil deposits accumulated by natural water currents. However, they must formally apply to place it under their Torrens Title, or a squatter could take it by prescription after 30 years."
+                scenario: "Over 15 years, a river's natural current gradually and imperceptibly deposits silt and soil along a farmer's riverbank, adding 500 square meters to his property. He never updates his land title, and a squatter occupies that 500-square-meter strip for 30 years.",
+                question: "Can the squatter acquire ownership of the alluvial deposit after 30 years?",
+                answer: "Yes, because the alluvial land was never registered under the Torrens Title.",
+                whys: "Under Art. 457, while a riparian owner automatically owns gradual river accretion, they must formally apply to place it under their Torrens Title; otherwise, another party can acquire it by prescription after 30 years."
+            },
+            {
+                article: "Art. 458 (Lakes and Ponds)",
+                scenario: "During an unusually severe dry summer, the water level of a public lake drops significantly, exposing a 20-meter strip of dry lakebed bordering a private resort. The resort owner fences off the exposed strip as his new land.",
+                question: "Did the resort owner gain ownership of the exposed lakebed?",
+                answer: "No, owners adjoining lakes or ponds do not gain land when water recedes.",
+                whys: "Under Art. 458, owners of land adjoining lakes, ponds, or lagoons neither gain land when water recedes during dry seasons nor lose land when extraordinary floods submerge their banks; the highest ordinary water level is the permanent boundary."
             },
             {
                 article: "Art. 459 (Avulsion)",
-                scenario: "During a violent typhoon, a massive, identifiable chunk of land is torn away from Farm A and slammed downstream onto Farm B.",
-                question: "Does the owner of Farm B instantly own that chunk of land?",
-                answer: "No. The owner of Farm A retains ownership, subject to a deadline.",
-                whys: "Under Art. 459, when a violent flood tears off an identifiable chunk of land, the original owner keeps ownership. However, they must physically claim or remove that land within two years; otherwise, the downstream landowner acquires it by prescription."
+                scenario: "A violent flash flood tears away an identifiable, tree-covered chunk of land from Estate A and deposits it onto Estate B downstream. The owner of Estate A waits 3 years before demanding the return of that chunk of land.",
+                question: "Does the owner of Estate A still own that torn chunk of land?",
+                answer: "No, the owner of Estate B has acquired it by prescription.",
+                whys: "Under Art. 459 (Avulsion), the original owner retains ownership of a violently detached chunk of land ONLY if they physically claim or remove it within two years; after two years, the downstream owner acquires it."
+            },
+            {
+                article: "Art. 460 (Uprooted Trees)",
+                scenario: "A typhoon uproots several valuable mahogany trees from an upstream farm and washes them onto a downstream neighbor's lot. Four months later, the original owner arrives to claim his trees.",
+                question: "Can the original owner reclaim his uprooted trees, and on what condition?",
+                answer: "Yes, provided he pays the neighbor's salvage and safekeeping expenses.",
+                whys: "Under Art. 460, uprooted trees carried away by river floods may be claimed by the original owner within six months, subject to paying the expenses incurred by the downstream landowner in salvaging and securing them."
+            },
+            {
+                article: "Art. 461 (Abandoned Riverbeds)",
+                scenario: "A river naturally abandons its old channel—leaving a dry riverbed next to Farm X—and carves a brand-new path directly through Farm Y, flooding half of Farm Y's land.",
+                question: "Who automatically becomes the owner of the dry, abandoned riverbed?",
+                answer: "The owner of Farm Y (whose land was newly flooded).",
+                whys: "Under Art. 461, an abandoned riverbed automatically belongs to the private landowners whose estates are newly occupied by the new river course to compensate for their loss. Farm X (beside the dry bed) only holds a right of first refusal to buy it."
+            },
+            {
+                article: "Art. 462 (New Riverbeds)",
+                scenario: "After a major earthquake and heavy rains, a river naturally changes course and cuts a permanent new channel straight through a private mango plantation.",
+                question: "What is the legal classification of the newly submerged plantation land?",
+                answer: "It instantly becomes property of public dominion.",
+                whys: "Under Art. 462, whenever a river naturally changes course and opens a new bed across a private estate, the newly submerged land instantly becomes property of public dominion for as long as the water runs through it."
+            },
+            {
+                article: "Art. 463 (River Dividing into Branches)",
+                scenario: "A river splits into two distinct forks that wrap around a 2-hectare portion of a private farm, isolating it in the middle of the water like an island.",
+                question: "Does the farmer lose ownership of the isolated island portion to the State?",
+                answer: "No, the farmer retains full ownership of the isolated land.",
+                whys: "Under Art. 463, when a river divides into branches and surrounds an isolated plot of private land, turning it into an island, the original landowner retains full ownership of that property."
             }
         ];
 
@@ -404,7 +465,6 @@
             document.getElementById('answerText').innerText = currentQ.answer;
             document.getElementById('whysText').innerText = currentQ.whys; 
 
-            // Reset visibility
             document.getElementById('answerSection').style.display = 'none';
             document.getElementById('whysSection').style.display = 'none';
             document.getElementById('showAnswerBtn').style.display = 'inline-block';
